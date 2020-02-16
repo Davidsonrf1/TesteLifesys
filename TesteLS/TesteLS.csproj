@@ -145,6 +145,15 @@
   <ItemGroup>
     <None Include="Resources\Fornecedor.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Web-Google-Docs-Metro-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apps-Notepad-Metro-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apps-Disk-Cleanup-Metro-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

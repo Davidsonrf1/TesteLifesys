@@ -7,15 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TesteLS.Models;
 
 namespace TesteLS.CrudManaging
 {
 	public partial class CrudDetail : UserControl
 	{
-		public CrudDetail()
+		public Crud Crud { get; private set; }
+		public ModelBase Model { get; internal set; }
+
+		public CrudDetail(Crud crud, string title)
 		{
+			Crud = crud;
+
 			InitializeComponent();
 			tbFields.AutoSize = true;
+
+
 		}
 
 		private void CrudDetail_Load(object sender, EventArgs e)
@@ -42,6 +50,11 @@ namespace TesteLS.CrudManaging
 		{
 			base.OnParentChanged(e);
 			Dock = DockStyle.Fill;
+		}
+
+		private void tbFields_Paint(object sender, PaintEventArgs e)
+		{
+
 		}
 	}
 }

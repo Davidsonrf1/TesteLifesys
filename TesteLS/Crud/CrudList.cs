@@ -12,9 +12,27 @@ namespace TesteLS.CrudManaging
 {
 	public partial class CrudList : UserControl
 	{
-		public CrudList()
+		public Crud Crud { get; private set; }
+
+		public string Title
 		{
+			get
+			{
+				return lblTitle.Text;
+			}
+
+			set
+			{
+				lblTitle.Text = value;
+			}
+		}
+
+		public CrudList(Crud crud, string title)
+		{
+			Crud = crud;
 			InitializeComponent();
+
+			Title = title;
 		}
 
 		private void CrudList_Load(object sender, EventArgs e)
@@ -38,6 +56,29 @@ namespace TesteLS.CrudManaging
 
 			Dock = DockStyle.None;
 			Dock = DockStyle.Fill;
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void lsModelList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnNovo_Click(object sender, EventArgs e)
+		{
+			Crud.EditingModel = Crud.CreateModel();
+			Crud.Detail.Model = Crud.EditingModel;
+
+			Crud.ShowDetail();
+		}
+
+		private void btnEditar_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

@@ -63,6 +63,26 @@ namespace TesteLS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Apps_Disk_Cleanup_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Apps-Disk-Cleanup-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Apps_Notepad_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Apps-Notepad-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Empresa {
             get {
                 object obj = ResourceManager.GetObject("Empresa", resourceCulture);
@@ -86,6 +106,16 @@ namespace TesteLS.Properties {
         internal static System.Drawing.Bitmap Fornecedor {
             get {
                 object obj = ResourceManager.GetObject("Fornecedor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Web_Google_Docs_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Web-Google-Docs-Metro-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -15,7 +15,17 @@ namespace TesteLS.CrudManaging
 		public CrudList List { get; private set; }
 		public Type ModelType { get; private set; }
 		public List<ModelBase> Dataset { get; private set; }
-		public ModelBase EditingModel { get; private set; }
+		public ModelBase EditingModel { get; internal set; }
+		public Control Container { get; private set; }
+
+		private Crud(Type type, string listTitle, string detailTitle)
+		{
+			Detail = new CrudDetail(this, detailTitle);
+			List = new CrudList(this, listTitle);
+			ModelType = type;
+
+			Init();
+		}
 
 		IEnumerable<CrudDecoratorAttribute> GetDecorators()
 		{
@@ -23,7 +33,7 @@ namespace TesteLS.CrudManaging
 			{
 				var a = p.GetCustomAttribute<CrudDecoratorAttribute>();
 
-				if (a == null) // Se o decorador não foi definido, criamos um com base no campo da classe de modelo
+				if (a == null)
 				{
 					a = new CrudDecoratorAttribute();
 					a.Label = p.Name;
@@ -71,32 +81,41 @@ namespace TesteLS.CrudManaging
 			}
 		}
 
-		void Init()
+		Crud Init()
 		{
 			InitListColumns();
 			CreateEditForm();
+
+			return this;
 		}
 
-		public static Crud CreateCrud<T>(string listTitle, string detailTitle) where T: ModelBase, new()
-		{
-			var crud = new Crud();
-
-			crud.Detail = new CrudDetail();
-			crud.List = new CrudList();
-			crud.ModelType = typeof(T);
-			crud.Init();
-
-			crud.List.lblTitle.Text = listTitle;
-
-			return crud;
-		}
+		public static Crud CreateCrud<T>(string listTitle, string detailTitle) where T : ModelBase, new() => new Crud(typeof(T), listTitle, detailTitle);
+		internal ModelBase CreateModel() => (ModelBase)Activator.CreateInstance(ModelType);
 
 		public void SetContainer(Control container)
 		{
-			container.Controls.Clear();
-			container.Controls.Add(List);
+			Container = container;
+			ShowList();
+		}
+
+		internal void ShowList()
+		{
+			Detail.Visible = false;
+
+			Container.Controls.Clear();
+			Container.Controls.Add(List);
 
 			List.Visible = true;
+		}
+
+		internal void ShowDetail()
+		{
+			List.Visible = false;
+
+			Container.Controls.Clear();
+			Container.Controls.Add(Detail);
+
+			Detail.Visible = true;
 		}
 	}
 }
