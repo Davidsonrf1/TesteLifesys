@@ -8,6 +8,6 @@ namespace TesteLS.CrudManaging
 {
 	public interface ICrudValidator
 	{
-		string Validate(object value);
+		string Validate(object value); // Se válido, retornar null. Caso contrário retornar o erro
 	}
 }

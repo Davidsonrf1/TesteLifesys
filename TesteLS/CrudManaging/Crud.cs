@@ -72,12 +72,7 @@ namespace TesteLS.CrudManaging
 				if (!d.AllowEdit)
 					continue;
 
-				Type editor = d.Control;
-
-				if (editor == null)
-					editor = typeof(TextBox);
-
-				Detail.AddField(d.Label, editor, d.Width);
+				Detail.AddField(d);
 			}
 		}
 
@@ -98,6 +93,14 @@ namespace TesteLS.CrudManaging
 			ShowList();
 		}
 
+		public Type GetDefaulEditor(Type type)
+		{
+			if (typeof(DateTime).IsAssignableFrom(type))
+				return typeof(DateTimePicker);
+
+			return typeof(TextBox);
+		}
+
 		internal void ShowList()
 		{
 			Detail.Visible = false;
@@ -106,6 +109,7 @@ namespace TesteLS.CrudManaging
 			Container.Controls.Add(List);
 
 			List.Visible = true;
+			List.LoadList();
 		}
 
 		internal void ShowDetail()
@@ -114,6 +118,8 @@ namespace TesteLS.CrudManaging
 
 			Container.Controls.Clear();
 			Container.Controls.Add(Detail);
+			
+			Detail.Model = EditingModel;
 
 			Detail.Visible = true;
 		}

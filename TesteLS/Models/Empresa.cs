@@ -11,18 +11,18 @@ namespace TesteLS.Models
 {
 	public class Empresa: ModelBase
 	{
-		[CrudDecorator("Código: ", AllowEdit = false, Width = 80)]
+		[CrudDecorator("Código", AllowEdit = false, Width = 80)]
 		public int EmpresaID { get; set; }
 
-		[CrudDecorator("Nome Fantasia: ", Control = typeof(TextBox), Width = 350)]
+		[CrudDecorator("Nome Fantasia", Control = typeof(TextBox), Width = 350)]
 		public string NomeFantasia { get; set; }
 
-		[CrudDecorator("Número CNPJ: ", Control = typeof(TextBox), Width = 190)]
+		[CrudDecorator("Número CNPJ", Control = typeof(TextBox), Width = 190)]
 		public string Cnpj { get; set; }
 
-		public override ControllerBase GetController(string field)
+		public override ControllerBase GetController()
 		{
-			throw new NotImplementedException();
+			return new EmpresaController();
 		}
 	}
 }

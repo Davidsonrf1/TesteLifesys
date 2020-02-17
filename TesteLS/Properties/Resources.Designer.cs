@@ -63,6 +63,16 @@ namespace TesteLS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Apps_CCleaner_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Apps-CCleaner-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Apps_Disk_Cleanup_Metro_icon {
             get {
                 object obj = ResourceManager.GetObject("Apps-Disk-Cleanup-Metro-icon", resourceCulture);
@@ -76,6 +86,16 @@ namespace TesteLS.Properties {
         internal static System.Drawing.Bitmap Apps_Notepad_Metro_icon {
             get {
                 object obj = ResourceManager.GetObject("Apps-Notepad-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Button_Warning_icon {
+            get {
+                object obj = ResourceManager.GetObject("Button-Warning-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +126,16 @@ namespace TesteLS.Properties {
         internal static System.Drawing.Bitmap Fornecedor {
             get {
                 object obj = ResourceManager.GetObject("Fornecedor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Other_Save_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Other-Save-Metro-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.lsModelList = new System.Windows.Forms.ListView();
+			this.lvModel = new System.Windows.Forms.ListView();
 			this.pnlControl = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lblTitle = new System.Windows.Forms.Label();
@@ -39,19 +39,24 @@
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// lsModelList
+			// lvModel
 			// 
-			this.lsModelList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.lvModel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.lsModelList.HideSelection = false;
-			this.lsModelList.Location = new System.Drawing.Point(3, 46);
-			this.lsModelList.Name = "lsModelList";
-			this.lsModelList.Size = new System.Drawing.Size(866, 363);
-			this.lsModelList.TabIndex = 0;
-			this.lsModelList.UseCompatibleStateImageBehavior = false;
-			this.lsModelList.View = System.Windows.Forms.View.Details;
-			this.lsModelList.SelectedIndexChanged += new System.EventHandler(this.lsModelList_SelectedIndexChanged);
+			this.lvModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lvModel.FullRowSelect = true;
+			this.lvModel.GridLines = true;
+			this.lvModel.HideSelection = false;
+			this.lvModel.Location = new System.Drawing.Point(3, 46);
+			this.lvModel.MultiSelect = false;
+			this.lvModel.Name = "lvModel";
+			this.lvModel.Size = new System.Drawing.Size(866, 363);
+			this.lvModel.TabIndex = 0;
+			this.lvModel.UseCompatibleStateImageBehavior = false;
+			this.lvModel.View = System.Windows.Forms.View.Details;
+			this.lvModel.SelectedIndexChanged += new System.EventHandler(this.lvModel_SelectedIndexChanged);
+			this.lvModel.DoubleClick += new System.EventHandler(this.lvModel_DoubleClick);
 			// 
 			// pnlControl
 			// 
@@ -145,7 +150,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.pnlControl);
-			this.Controls.Add(this.lsModelList);
+			this.Controls.Add(this.lvModel);
 			this.Name = "CrudList";
 			this.Size = new System.Drawing.Size(872, 479);
 			this.Load += new System.EventHandler(this.CrudList_Load);
@@ -157,7 +162,7 @@
 
 		#endregion
 		private System.Windows.Forms.Panel pnlControl;
-		public System.Windows.Forms.ListView lsModelList;
+		public System.Windows.Forms.ListView lvModel;
 		private System.Windows.Forms.Panel panel1;
 		public System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Button btnNovo;

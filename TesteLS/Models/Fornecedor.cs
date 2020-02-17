@@ -24,7 +24,7 @@ namespace TesteLS.Models
 		[CrudDecorator("Data de Nascimento: ", AllowEdit = false, Width = 80)]
 		public DateTime DataNascimento { get; set; }
 
-		public override ControllerBase GetController(string field)
+		public override ControllerBase GetController()
 		{
 			throw new NotImplementedException();
 		}
