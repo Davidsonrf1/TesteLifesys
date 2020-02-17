@@ -13,11 +13,6 @@ namespace TesteLS
 	{
 		public static DataContext MainContext { get; private set; }
 
-		public static DataContext CreateContext()
-		{
-			return new DataContext(); // TODO: Criar conexão de forma adequada
-		}
-
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -29,12 +24,14 @@ namespace TesteLS
 			var migrator = new DbMigrator(new Configuration());
 			migrator.Update();
 
-			MainContext.Empresas.Load();
+			var l = MainContext.Empresas.ToList();
 
-			foreach (var e in MainContext.Empresas)
+			foreach (var e in l)
 			{
-
+				MainContext.Empresas.Remove(e);
 			}
+
+			MainContext.SaveChanges();
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);

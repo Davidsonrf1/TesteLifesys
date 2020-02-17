@@ -39,7 +39,7 @@ namespace TesteLS.Controllers
 
 		public override void OnSave(ModelBase model)
 		{
-			using(var ctx = Program.CreateContext())
+			using(var ctx = new DataContext())
 			{
 				var emp = ctx.Empresas.SingleOrDefault(e => e.EmpresaID == ((Empresa)model).EmpresaID);
 

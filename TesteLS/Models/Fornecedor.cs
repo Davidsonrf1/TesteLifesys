@@ -12,17 +12,23 @@ namespace TesteLS.Models
 
 	public class Fornecedor : ModelBase
 	{
-		[CrudDecorator("Código: ", AllowEdit = false, Width = 80)]
+		[CrudDecorator("Código", AllowEdit = false, Width = 80)]
 		public int FornecedorID { get; set; }
 
-		[CrudDecorator("Nome: ", Width = 250)]
+		[CrudDecorator("Nome", Width = 250)]
 		public string Nome { get; set; }
 
-		[CrudDecorator("Cnpj/Cpf: ", AllowEdit = false, Width = 80)]
+		[CrudDecorator("Empresa", AllowEdit = true, Width = 80)]
+		public Empresa Empresa { get; set; }
+
+		[CrudDecorator("Cnpj/Cpf", Width = 80)]
 		public string CnpjCpf { get; set; }
 
-		[CrudDecorator("Data de Nascimento: ", AllowEdit = false, Width = 80)]
+		[CrudDecorator("Data de Nascimento", Width = 80)]
 		public DateTime DataNascimento { get; set; }
+
+		[CrudDecorator("Tipo", AllowEdit = false, Width = 80)]
+		public TipoFornecedor Tipo { get; set; }
 
 		public override ControllerBase GetController()
 		{

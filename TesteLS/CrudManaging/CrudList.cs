@@ -147,7 +147,7 @@ namespace TesteLS.CrudManaging
 		{
 			if (Visible)
 			{
-				using (var ctx = Program.CreateContext())
+				using (var ctx = new DataContext())
 				{
 					var ctrl = GetController();
 					ModelList = ctrl.LoadList<Empresa>(ctx);
