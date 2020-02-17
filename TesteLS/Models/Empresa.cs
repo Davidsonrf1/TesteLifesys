@@ -24,5 +24,10 @@ namespace TesteLS.Models
 		{
 			return new EmpresaController();
 		}
+
+		public override string ToString()
+		{
+			return $"{EmpresaID} - {NomeFantasia}";
+		}
 	}
 }

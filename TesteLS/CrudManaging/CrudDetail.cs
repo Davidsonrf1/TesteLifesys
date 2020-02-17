@@ -61,6 +61,12 @@ namespace TesteLS.CrudManaging
 			if (editor == null)
 				editor = typeof(TextBox);
 
+			if (decorator.Property.PropertyType.IsAssignableFrom(typeof(ModelBase)))
+			{
+				var model = (ModelBase)Activator.CreateInstance(decorator.Property.PropertyType);
+				editor = typeof(ComboBox);
+			}
+
 			var field = new CrudField(decorator.Label, decorator.Width, editor);
 			field.Tag = decorator;
 

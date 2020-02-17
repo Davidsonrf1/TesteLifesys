@@ -73,5 +73,7 @@ namespace TesteLS.Controllers
 		public abstract void OnSave(ModelBase model);
 		public abstract List<ModelBase> LoadList<T>(DataContext ctx, Func<ModelBase, bool> filter) where T: ModelBase;
 		public List<ModelBase> LoadList<T>(DataContext ctx) where T : ModelBase => LoadList<T>(ctx, null);
+
+		public static ControllerBase GetController<T>() where T: ModelBase, new() => new T().GetController();
 	}
 }

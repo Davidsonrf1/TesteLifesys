@@ -32,7 +32,7 @@ namespace TesteLS.Models
 
 		public override ControllerBase GetController()
 		{
-			throw new NotImplementedException();
+			return new FornecedorController();
 		}
 	}
 }

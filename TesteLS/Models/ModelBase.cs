@@ -11,22 +11,5 @@ namespace TesteLS.Models
 	public abstract class ModelBase
 	{
 		public abstract ControllerBase GetController();
-		
-		public object ValueFromString(PropertyInfo prop, string value)
-		{
-
-
-			return null;
-		}
-
-		public string ValueToString(PropertyInfo prop, string value)
-		{
-			return null;
-		}
-
-		public void SetValue(PropertyInfo prop, object value)
-		{
-
-		}
 	}
 }
