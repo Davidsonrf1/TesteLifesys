@@ -24,15 +24,6 @@ namespace TesteLS
 			var migrator = new DbMigrator(new Configuration());
 			migrator.Update();
 
-			var l = MainContext.Empresas.ToList();
-
-			foreach (var e in l)
-			{
-				MainContext.Empresas.Remove(e);
-			}
-
-			MainContext.SaveChanges();
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FrmMain());
