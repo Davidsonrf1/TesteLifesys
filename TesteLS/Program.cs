@@ -19,10 +19,21 @@ namespace TesteLS
 		[STAThread]
 		static void Main()
 		{
-			MainContext = new DataContext();
+			try
+			{
+				MainContext = new DataContext();
 
-			var migrator = new DbMigrator(new Configuration());
-			migrator.Update();
+				var migrator = new DbMigrator(new Configuration());
+				migrator.Update();
+			}
+			catch (Exception ex)
+			{
+				var cs = System.Configuration.ConfigurationManager.ConnectionStrings["DataContext"];
+
+				MessageBox.Show($"Falaha ao conectar no banco de dados\nMensagem: {ex.Message}\nString de conexão: {cs}", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+				return;
+			}
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
