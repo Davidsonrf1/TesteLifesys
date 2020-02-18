@@ -16,53 +16,40 @@ namespace TesteLS.CrudManaging
 	{
 		public Crud Crud { get; private set; }
 
-		List<ModelBase> _modelList = null;
-		public List<ModelBase> ModelList
+		public object ModelList
 		{
 			get
 			{
-				return _modelList;
+				return grid.DataSource;
 			}
 
 			set
 			{
-				_modelList = value;
-				FillList();
+				grid.DataSource = value;
+				SetupColumns();
 			}
 		}
 
-		public void AddModel(ModelBase model)
+		CrudDecoratorAttribute FindDecorator(string name)
 		{
-			ListViewItem lvi = null;
-
-			foreach (var p in model.GetType().GetProperties())
+			foreach (var i in Crud.GetDecorators())
 			{
-				string value = p.GetValue(model)?.ToString();
-
-				if (value == null)
-					value = "";
-
-				if (lvi == null)
-				{
-					lvi = lvModel.Items.Add(value);
-					lvi.Tag = model;
-				}
-				else
-				{
-					lvi.SubItems.Add(value);
-				}				
+				if (i.Property.Name.Equals(name))
+					return i;
 			}
+
+			return null;
 		}
 
-		public void FillList()
+		void SetupColumns()
 		{
-			lvModel.Items.Clear();
-
-			if (_modelList != null)
+			foreach (DataGridViewColumn c in grid.Columns)
 			{
-				foreach (var model in _modelList)
+				var dec = FindDecorator(c.DataPropertyName);
+
+				if (dec != null)
 				{
-					AddModel(model);
+					c.HeaderText = dec.Label;
 				}
 			}
 		}
@@ -85,22 +72,11 @@ namespace TesteLS.CrudManaging
 			Crud = crud;
 			InitializeComponent();
 
+			grid.EditMode = DataGridViewEditMode.EditProgrammatically;
+			grid.MultiSelect = false;
+			grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
 			Title = title;
-		}
-
-		private void CrudList_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		public void ClearColumns()
-		{
-			lvModel.Columns.Clear();
-		}
-
-		public void AddColumn(string label, int width)
-		{
-			lvModel.Columns.Add(label, width, HorizontalAlignment.Center);
 		}
 
 		protected override void OnParentChanged(EventArgs e)
@@ -111,11 +87,6 @@ namespace TesteLS.CrudManaging
 			Dock = DockStyle.Fill;
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void lsModelList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			btnEditar_Click(sender, null);
@@ -124,38 +95,37 @@ namespace TesteLS.CrudManaging
 		private void btnNovo_Click(object sender, EventArgs e)
 		{
 			Crud.EditingModel = Crud.CreateModel();
-			Crud.Detail.Model = Crud.EditingModel;
-
 			Crud.ShowDetail();
 		}
 
 		private void btnEditar_Click(object sender, EventArgs e)
 		{
-			if (lvModel.SelectedItems.Count > 0)
+			if (grid.SelectedRows.Count > 0)
 			{
-				Crud.EditingModel = (ModelBase)lvModel.SelectedItems[0].Tag;
+				Crud.EditingModel = (ModelBase)grid.SelectedRows[0].DataBoundItem;
 				Crud.ShowDetail();
 			}
 		}
 
-		ControllerBase GetController() {
+		ControllerBase GetController()
+		{
 			var model = (ModelBase)Activator.CreateInstance(Crud.ModelType);
 			return model.GetController();
 		}
 
 		public void LoadList()
 		{
+			btnEditar.Enabled = false;
+			btnRemover.Enabled = false;
+
 			if (Visible)
 			{
 				using (var ctx = new DataContext())
 				{
 					var ctrl = GetController();
-					ModelList = ctrl.LoadList<Empresa>(ctx);
+					ModelList = ctrl.GetList();
 				}
 			}
-
-			btnEditar.Enabled = false;
-			btnRemover.Enabled = false;
 		}
 
 		protected override void OnVisibleChanged(EventArgs e)
@@ -168,9 +138,9 @@ namespace TesteLS.CrudManaging
 			btnEditar_Click(sender, null);
 		}
 
-		private void lvModel_SelectedIndexChanged(object sender, EventArgs e)
+		private void grid_SelectionChanged(object sender, EventArgs e)
 		{
-			if (lvModel.SelectedItems.Count > 0)
+			if (grid.SelectedRows.Count > 0)
 			{
 				btnEditar.Enabled = true;
 				btnRemover.Enabled = true;

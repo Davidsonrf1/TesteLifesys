@@ -16,13 +16,18 @@ namespace TesteLS.Controllers
 
 	public abstract class ControllerBase
 	{
-		Dictionary<string, IEnumerable<ICrudValidator>> _validators = new Dictionary<string, IEnumerable<ICrudValidator>>();
+		public DataContext Context { get; private set; }
 
+		protected ControllerBase()
+		{
+			Context = new DataContext();
+		}
+
+		Dictionary<string, IEnumerable<ICrudValidator>> _validators = new Dictionary<string, IEnumerable<ICrudValidator>>();
 		public void SetValidators(string field, IEnumerable<ICrudValidator> validators)
 		{
 			_validators[field] = validators;
 		}
-
 		public IEnumerable<ValidateResult> CallValidators(ModelBase model)
 		{
 			List<ValidateResult> result = new List<ValidateResult>();
@@ -50,14 +55,7 @@ namespace TesteLS.Controllers
 
 			return result;
 		}
-
 		public virtual List<ValidateResult> OnValidate(ModelBase model) => (List<ValidateResult>)CallValidators(model);
-
-		public virtual void OnLoad()
-		{
-
-		}
-
 		public void CopyModel(ModelBase origin, ModelBase dest)
 		{
 			if (origin.GetType().Equals(dest.GetType()))
@@ -69,11 +67,9 @@ namespace TesteLS.Controllers
 				}
 			}
 		}
-
 		public abstract void OnSave(ModelBase model);
-		public abstract List<ModelBase> LoadList<T>(DataContext ctx, Func<ModelBase, bool> filter) where T: ModelBase;
-		public List<ModelBase> LoadList<T>(DataContext ctx) where T : ModelBase => LoadList<T>(ctx, null);
 
-		public static ControllerBase GetController<T>() where T: ModelBase, new() => new T().GetController();
+		public abstract object GetList(Func<ModelBase, bool> filter);
+		public object GetList() => GetList(e => true);
 	}
 }

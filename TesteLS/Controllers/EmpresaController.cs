@@ -17,25 +17,7 @@ namespace TesteLS.Controllers
 			});
 		}
 
-		public override List<ModelBase> LoadList<T>(DataContext ctx, Func<ModelBase, bool> filter) 
-		{
-			if (filter == null)
-				filter = e => true;
-
-			var list = ctx.Empresas.Where(m => true).ToList();
-
-			List<ModelBase> ret = new List<ModelBase>();
-
-			foreach (var e in list)
-				ret.Add(e);
-
-			return ret;
-		}
-
-		public override void OnLoad()
-		{
-			
-		}
+		public override object GetList(Func<ModelBase, bool> filter) => Context.Empresas.Where<Empresa>(filter).ToList();
 
 		public override void OnSave(ModelBase model)
 		{

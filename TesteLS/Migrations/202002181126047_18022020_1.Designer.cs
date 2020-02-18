@@ -7,18 +7,18 @@ namespace TesteLS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class _18022020 : IMigrationMetadata
+    public sealed partial class _18022020_1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_18022020));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_18022020_1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002180936085_18022020"; }
+            get { return "202002181126047_18022020_1"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

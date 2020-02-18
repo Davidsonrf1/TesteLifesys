@@ -14,7 +14,7 @@ namespace TesteLS.Controllers
 		{
 			public string Validate(object value)
 			{
-				throw new NotImplementedException();
+				return null;
 			}
 		}
 
@@ -25,22 +25,9 @@ namespace TesteLS.Controllers
 
 		public override void OnSave(ModelBase model)
 		{
-			
+
 		}
 
-		public override List<ModelBase> LoadList<T>(DataContext ctx, Func<ModelBase, bool> filter)
-		{
-			if (filter == null)
-				filter = e => true;
-
-			var list = ctx.Fornecedores.Where(m => true).ToList();
-
-			List<ModelBase> ret = new List<ModelBase>();
-
-			foreach (var e in list)
-				ret.Add(e);
-
-			return ret;
-		}
+		public override object GetList(Func<ModelBase, bool> filter) => Context.Fornecedores.Where<Fornecedor>(filter).ToList();	
 	}
 }

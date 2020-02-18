@@ -11,5 +11,6 @@ namespace TesteLS.Models
 	public abstract class ModelBase
 	{
 		public abstract ControllerBase GetController();
+		public virtual string TranslateEnum(string name) { return ""; }
 	}
 }

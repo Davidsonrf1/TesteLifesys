@@ -90,6 +90,7 @@
     <Compile Include="CrudManaging\CrudList.Designer.cs">
       <DependentUpon>CrudList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrudManaging\EditorFactory.cs" />
     <Compile Include="CrudManaging\RequiredValidator.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="FrmMain.cs">
@@ -99,9 +100,9 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="CrudManaging\ICrudValidator.cs" />
-    <Compile Include="Migrations\202002180936085_18022020.cs" />
-    <Compile Include="Migrations\202002180936085_18022020.designer.cs">
-      <DependentUpon>202002180936085_18022020.cs</DependentUpon>
+    <Compile Include="Migrations\202002181126047_18022020_1.cs" />
+    <Compile Include="Migrations\202002181126047_18022020_1.designer.cs">
+      <DependentUpon>202002181126047_18022020_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fornecedor.cs" />
@@ -121,8 +122,8 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002180936085_18022020.resx">
-      <DependentUpon>202002180936085_18022020.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002181126047_18022020_1.resx">
+      <DependentUpon>202002181126047_18022020_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

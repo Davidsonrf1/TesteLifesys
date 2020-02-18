@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TesteLS.Controllers;
+using TesteLS.Models;
 
 namespace TesteLS.CrudManaging
 {
@@ -56,31 +57,12 @@ namespace TesteLS.CrudManaging
 		}
 
 		public Control EditControl { get; private set; }
-		public string Value
-		{
-			get
-			{
-				return EditControl.Text;
-			}
 
-			set
-			{
-				EditControl.Text = value;
-			}
-		}
-
-		public CrudField(CrudDecoratorAttribute decorator)
+		public CrudField(CrudDecoratorAttribute decorator, ModelBase model)
 		{
 			InitializeComponent();
 
-			if (typeof(Control).IsAssignableFrom(decorator.Control))
-			{
-				EditControl = (Control)Activator.CreateInstance(decorator.Control);
-			}
-			else
-			{
-				throw new InvalidCastException($"Não é possível converter um objeto do tipo {decorator.Control.FullName} em um objeto do tipo {typeof(Control).FullName}");
-			}
+			EditControl = EditorFactory.CreateEditor(decorator, model);
 
 			lbFieldLabel.Text = decorator.Label;
 			pnlEdit.Controls.Add(EditControl);
@@ -89,7 +71,12 @@ namespace TesteLS.CrudManaging
 
 			EditControl.Width = decorator.Width;
 			EditControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Top;
-			EditControl.Top = (pnlEdit.Height - EditControl.Height) >> 1;			
+			EditControl.Top = (pnlEdit.Height - EditControl.Height) >> 1;
+
+			if (!decorator.AllowEdit)
+				EditControl.Enabled = false;
+
+			Tag = decorator;
 		}
 
 		private void CrudField_Load(object sender, EventArgs e)

@@ -12,10 +12,24 @@ using TesteLS.Controllers;
 
 namespace TesteLS.CrudManaging
 {
-	public partial class CrudDetail : UserControl
+	public partial class CrudDetail: UserControl
 	{
 		public Crud Crud { get; private set; }
-		public ModelBase Model { get; internal set; }
+		ModelBase _model = null;
+
+		public ModelBase Model
+		{
+			get
+			{
+				return _model;
+			}
+			
+			set
+			{
+				_model = value;
+				CreateView();
+			}
+		}
 
 		public string Title
 		{
@@ -45,7 +59,20 @@ namespace TesteLS.CrudManaging
 
 		}
 
-		public void ClearFields()
+		void CreateView()
+		{
+			ClearFields();
+
+			if (_model != null)
+			{
+				foreach (var dec in Crud.GetDecorators())
+				{
+					AddField(dec);
+				}
+			}
+		}
+
+		void ClearFields()
 		{
 			tbFields.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
 			tbFields.Controls.Clear();
@@ -54,23 +81,9 @@ namespace TesteLS.CrudManaging
 
 		int _currentRowIndex = 0;
 
-		public void AddField(CrudDecoratorAttribute decorator)
+		void AddField(CrudDecoratorAttribute decorator)
 		{
-			Type editor = decorator.Control;
-
-			if (editor == null)
-				editor = typeof(TextBox);
-
-			if (decorator.Property.PropertyType.IsAssignableFrom(typeof(ModelBase)))
-			{
-				var model = (ModelBase)Activator.CreateInstance(decorator.Property.PropertyType);
-				editor = typeof(ComboBox);
-			}
-
-			decorator.Control = editor;
-
-			var field = new CrudField(decorator);
-			field.Tag = decorator;
+			var field = new CrudField(decorator, Model);
 
 			tbFields.Controls.Add(field, 0, _currentRowIndex++);
 
@@ -80,24 +93,6 @@ namespace TesteLS.CrudManaging
 		private void Field_OnError(object sender, List<ValidateResult> errors)
 		{
 			
-		}
-
-		void BindModel()
-		{
-			foreach (var ctrl in tbFields.Controls)
-			{
-				if (typeof(CrudField).IsAssignableFrom(ctrl.GetType()))
-				{
-					var field = (CrudField)ctrl;
-					var decorator = (CrudDecoratorAttribute)field.Tag;
-
-					//var value = decorator.Property.GetValue(Model)?.ToString();
-					//field.Value = value;
-
-					field.DataBindings.Clear();
-					field.DataBindings.Add("Value", Model, decorator.Property.Name);
-				}				
-			}
 		}
 
 		void BindErrors(List<ValidateResult> errors) 
@@ -190,11 +185,6 @@ namespace TesteLS.CrudManaging
 		{
 			base.OnVisibleChanged(e);
 			BindErrors(null);
-
-			if (Visible)
-			{
-				BindModel();
-			}
 		}
 
 		protected override void OnParentChanged(EventArgs e)

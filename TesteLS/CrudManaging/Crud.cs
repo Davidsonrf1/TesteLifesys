@@ -23,11 +23,9 @@ namespace TesteLS.CrudManaging
 			Detail = new CrudDetail(this, detailTitle);
 			List = new CrudList(this, listTitle);
 			ModelType = type;
-
-			Init();
 		}
 
-		IEnumerable<CrudDecoratorAttribute> GetDecorators()
+		internal IEnumerable<CrudDecoratorAttribute> GetDecorators()
 		{
 			foreach (var p in GetModelFields())
 			{
@@ -45,43 +43,12 @@ namespace TesteLS.CrudManaging
 			}
 		}
 
-		IEnumerable<PropertyInfo> GetModelFields()
+		internal IEnumerable<PropertyInfo> GetModelFields()
 		{
 			foreach (var p in ModelType.GetProperties())
 			{
 				yield return p;
 			}
-		}
-
-		void InitListColumns()
-		{
-			List.ClearColumns();
-
-			foreach (var d in GetDecorators())
-			{
-				List.AddColumn(d.Label, d.Width);
-			}
-		}
-
-		void CreateEditForm()
-		{
-			Detail.ClearFields();
-
-			foreach (var d in GetDecorators())
-			{
-				if (!d.AllowEdit)
-					continue;
-
-				Detail.AddField(d);
-			}
-		}
-
-		Crud Init()
-		{
-			InitListColumns();
-			CreateEditForm();
-
-			return this;
 		}
 
 		public static Crud CreateCrud<T>(string listTitle, string detailTitle) where T : ModelBase, new() => new Crud(typeof(T), listTitle, detailTitle);
@@ -120,7 +87,6 @@ namespace TesteLS.CrudManaging
 			Container.Controls.Add(Detail);
 			
 			Detail.Model = EditingModel;
-
 			Detail.Visible = true;
 		}
 	}

@@ -20,10 +20,17 @@ namespace TesteLS.CrudManaging
 			Label = label;
 		}
 
+		public string[] EnumMap { get; set; }
+
 		public PropertyInfo Property { get; internal set; }
 		public bool AllowEdit { get; set; } = true;
 		public string Label { get; set; }
 		public Type Control { get; set; }
 		public int Width { get; set; } = 240;
+
+		public override string ToString()
+		{
+			return Label;
+		}
 	}
 }
