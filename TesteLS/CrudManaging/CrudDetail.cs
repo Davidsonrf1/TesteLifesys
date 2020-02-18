@@ -67,7 +67,9 @@ namespace TesteLS.CrudManaging
 				editor = typeof(ComboBox);
 			}
 
-			var field = new CrudField(decorator.Label, decorator.Width, editor);
+			decorator.Control = editor;
+
+			var field = new CrudField(decorator);
 			field.Tag = decorator;
 
 			tbFields.Controls.Add(field, 0, _currentRowIndex++);
@@ -89,8 +91,11 @@ namespace TesteLS.CrudManaging
 					var field = (CrudField)ctrl;
 					var decorator = (CrudDecoratorAttribute)field.Tag;
 
-					var value = decorator.Property.GetValue(Model)?.ToString();
-					field.Value = value;
+					//var value = decorator.Property.GetValue(Model)?.ToString();
+					//field.Value = value;
+
+					field.DataBindings.Clear();
+					field.DataBindings.Add("Value", Model, decorator.Property.Name);
 				}				
 			}
 		}
@@ -139,7 +144,7 @@ namespace TesteLS.CrudManaging
 		void Save()
 		{
 			var controller = Model.GetController();
-			var tmpModel = (ModelBase)Activator.CreateInstance(Model.GetType());
+			var tmpModel =  Crud.CreateModel();
 
 			foreach (var ctrl in tbFields.Controls)
 			{

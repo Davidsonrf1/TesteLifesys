@@ -99,13 +99,9 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="CrudManaging\ICrudValidator.cs" />
-    <Compile Include="Migrations\202002171207159_Empresa.cs" />
-    <Compile Include="Migrations\202002171207159_Empresa.designer.cs">
-      <DependentUpon>202002171207159_Empresa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002171219105_tipo.cs" />
-    <Compile Include="Migrations\202002171219105_tipo.designer.cs">
-      <DependentUpon>202002171219105_tipo.cs</DependentUpon>
+    <Compile Include="Migrations\202002180936085_18022020.cs" />
+    <Compile Include="Migrations\202002180936085_18022020.designer.cs">
+      <DependentUpon>202002180936085_18022020.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Fornecedor.cs" />
@@ -125,11 +121,8 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002171207159_Empresa.resx">
-      <DependentUpon>202002171207159_Empresa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002171219105_tipo.resx">
-      <DependentUpon>202002171219105_tipo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002180936085_18022020.resx">
+      <DependentUpon>202002180936085_18022020.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

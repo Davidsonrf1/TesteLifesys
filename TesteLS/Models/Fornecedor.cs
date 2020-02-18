@@ -19,7 +19,7 @@ namespace TesteLS.Models
 		public string Nome { get; set; }
 
 		[CrudDecorator("Empresa", AllowEdit = true, Width = 80)]
-		public Empresa Empresa { get; set; }
+		public Empresa EmpresaID { get; set; }
 
 		[CrudDecorator("Cnpj/Cpf", Width = 80)]
 		public string CnpjCpf { get; set; }

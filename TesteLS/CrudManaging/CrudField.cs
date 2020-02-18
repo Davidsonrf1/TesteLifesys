@@ -69,25 +69,25 @@ namespace TesteLS.CrudManaging
 			}
 		}
 
-		public CrudField(string label, int width, Type editControl)
+		public CrudField(CrudDecoratorAttribute decorator)
 		{
 			InitializeComponent();
 
-			if (typeof(Control).IsAssignableFrom(editControl))
+			if (typeof(Control).IsAssignableFrom(decorator.Control))
 			{
-				EditControl = (Control)Activator.CreateInstance(editControl);
+				EditControl = (Control)Activator.CreateInstance(decorator.Control);
 			}
 			else
 			{
-				throw new InvalidCastException($"Não é possível converter um objeto do tipo {editControl.FullName} em um objeto do tipo {typeof(Control).FullName}");
+				throw new InvalidCastException($"Não é possível converter um objeto do tipo {decorator.Control.FullName} em um objeto do tipo {typeof(Control).FullName}");
 			}
 
-			lbFieldLabel.Text = label;
+			lbFieldLabel.Text = decorator.Label;
 			pnlEdit.Controls.Add(EditControl);
 
 			EditControl.Font = lbFieldLabel.Font;
 
-			EditControl.Width = width;
+			EditControl.Width = decorator.Width;
 			EditControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Top;
 			EditControl.Top = (pnlEdit.Height - EditControl.Height) >> 1;			
 		}
@@ -100,10 +100,6 @@ namespace TesteLS.CrudManaging
 		protected override void OnParentChanged(EventArgs e)
 		{
 			base.OnParentChanged(e);
-
-			//Width = Parent.Width - (Margin.Left + Margin.Right);
-			//Left = Margin.Left;
-			//Anchor = AnchorStyles.Left | AnchorStyles.Right;
 		}
 
 		public object GetEditorValue()

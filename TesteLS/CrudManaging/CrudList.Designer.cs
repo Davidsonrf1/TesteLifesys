@@ -30,11 +30,11 @@
 		{
 			this.lvModel = new System.Windows.Forms.ListView();
 			this.pnlControl = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.lblTitle = new System.Windows.Forms.Label();
 			this.btnRemover = new System.Windows.Forms.Button();
 			this.btnEditar = new System.Windows.Forms.Button();
 			this.btnNovo = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.lblTitle = new System.Windows.Forms.Label();
 			this.pnlControl.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -70,28 +70,6 @@
 			this.pnlControl.Name = "pnlControl";
 			this.pnlControl.Size = new System.Drawing.Size(866, 64);
 			this.pnlControl.TabIndex = 1;
-			// 
-			// panel1
-			// 
-			this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
-			this.panel1.Controls.Add(this.lblTitle);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(872, 40);
-			this.panel1.TabIndex = 3;
-			// 
-			// lblTitle
-			// 
-			this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lblTitle.Font = new System.Drawing.Font("Carlito", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTitle.ForeColor = System.Drawing.Color.White;
-			this.lblTitle.Location = new System.Drawing.Point(0, 0);
-			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(872, 40);
-			this.lblTitle.TabIndex = 0;
-			this.lblTitle.Text = "label1";
-			this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// btnRemover
 			// 
@@ -143,6 +121,28 @@
 			this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			this.btnNovo.UseVisualStyleBackColor = true;
 			this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.DarkSlateGray;
+			this.panel1.Controls.Add(this.lblTitle);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(872, 40);
+			this.panel1.TabIndex = 3;
+			// 
+			// lblTitle
+			// 
+			this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lblTitle.Font = new System.Drawing.Font("Carlito", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitle.ForeColor = System.Drawing.Color.White;
+			this.lblTitle.Location = new System.Drawing.Point(0, 0);
+			this.lblTitle.Name = "lblTitle";
+			this.lblTitle.Size = new System.Drawing.Size(872, 40);
+			this.lblTitle.TabIndex = 0;
+			this.lblTitle.Text = "label1";
+			this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// CrudList
 			// 

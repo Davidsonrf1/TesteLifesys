@@ -7,13 +7,13 @@ namespace TesteLS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class Empresa : IMigrationMetadata
+    public sealed partial class _18022020 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Empresa));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_18022020));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002171207159_Empresa"; }
+            get { return "202002180936085_18022020"; }
         }
         
         string IMigrationMetadata.Source
