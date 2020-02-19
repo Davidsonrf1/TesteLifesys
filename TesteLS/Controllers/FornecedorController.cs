@@ -45,7 +45,7 @@ namespace TesteLS.Controllers
 			SetValidators("DataNascimento", new ICrudValidator[] { new RequiredValidator() });
 		}
 		
-		public override void OnSave(ModelBase model)
+		public override void Save(ModelBase model)
 		{
 			using (var ctx = new DataContext())
 			{
@@ -62,6 +62,20 @@ namespace TesteLS.Controllers
 				}
 
 				ctx.SaveChanges();
+			}
+		}
+
+		public override void Remove(ModelBase model)
+		{
+			using (var ctx = new DataContext())
+			{
+				var forn = ctx.Fornecedores.SingleOrDefault(e => e.FornecedorID == ((Fornecedor)model).FornecedorID);
+
+				if (forn != null)
+				{
+					ctx.Fornecedores.Remove(forn);
+					ctx.SaveChanges();
+				}
 			}
 		}
 

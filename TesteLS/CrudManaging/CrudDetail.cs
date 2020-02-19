@@ -143,7 +143,7 @@ namespace TesteLS.CrudManaging
 
 			if (errors.Count == 0)
 			{
-				controller.OnSave(Model);
+				controller.Save(Model);
 				Crud.ShowList();
 			}
 			else

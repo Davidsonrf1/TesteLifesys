@@ -159,7 +159,21 @@ namespace TesteLS.CrudManaging
 
 		private void btnRemover_Click(object sender, EventArgs e)
 		{
+			if (grid.SelectedRows.Count > 0)
+			{
+				var model = (ModelBase)grid.SelectedRows[0].DataBoundItem;
 
+				if (model != null)
+				{
+					if (MessageBox.Show($"Deseja realmente excluir o registro: {model}?", "A T E N Ç Ã O", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+					{
+						var ctrl = model.GetController();
+						ctrl.Remove(model);
+
+						Crud.ShowList();
+					}
+				}
+			}
 		}
 	}
 }

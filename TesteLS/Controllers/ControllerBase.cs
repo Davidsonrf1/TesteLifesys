@@ -67,7 +67,9 @@ namespace TesteLS.Controllers
 				}
 			}
 		}
-		public abstract void OnSave(ModelBase model);
+
+		public abstract void Save(ModelBase model);		
+		public abstract void Remove(ModelBase model);
 
 		public abstract object GetList(Func<ModelBase, bool> filter);
 		public object GetList() => GetList(e => true);

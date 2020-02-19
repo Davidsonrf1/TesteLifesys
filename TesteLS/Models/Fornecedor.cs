@@ -53,5 +53,10 @@ namespace TesteLS.Models
 
 			return base.TranslateEnum(name);
 		}
+
+		public override string ToString()
+		{
+			return $"{FornecedorID} - {Nome}";
+		}
 	}
 }
