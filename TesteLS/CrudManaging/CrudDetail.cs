@@ -139,40 +139,11 @@ namespace TesteLS.CrudManaging
 		void Save()
 		{
 			var controller = Model.GetController();
-			var tmpModel =  Crud.CreateModel();
-
-			foreach (var ctrl in tbFields.Controls)
-			{
-				if (typeof(CrudField).IsAssignableFrom(ctrl.GetType()))
-				{
-					var field = (CrudField)ctrl;
-					var decorator = (CrudDecoratorAttribute)field.Tag;
-					var prop = decorator.Property;
-
-					var value = field.GetEditorValue();
-					prop.SetValue(tmpModel, value);
-				}
-			}
-
-			var errors = controller.OnValidate(tmpModel);
+			var errors = controller.OnValidate(Model);
 
 			if (errors.Count == 0)
 			{
-				foreach (var ctrl in tbFields.Controls)
-				{
-					if (typeof(CrudField).IsAssignableFrom(ctrl.GetType()))
-					{
-						var field = (CrudField)ctrl;
-						var decorator = (CrudDecoratorAttribute)field.Tag;
-						var prop = decorator.Property;
-
-						var value = field.GetEditorValue();
-						prop.SetValue(Model, value);
-					}
-				}
-
 				controller.OnSave(Model);
-
 				Crud.ShowList();
 			}
 			else

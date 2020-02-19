@@ -39,7 +39,7 @@ namespace TesteLS.Controllers
 					foreach (var v in validators)
 					{
 						var value = p.GetValue(model);
-						var vm = v.Validate(value);
+						var vm = v.Validate(model, value);
 
 						if (vm != null)
 						{

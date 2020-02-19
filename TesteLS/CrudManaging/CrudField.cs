@@ -20,6 +20,8 @@ namespace TesteLS.CrudManaging
 
 		void RaiseOnErrorsClick() => OnError?.Invoke(this, Errors);
 
+		public ModelBase Model { get; set; }
+
 		List<ValidateResult> _errors = null;
 		public List<ValidateResult> Errors
 		{
@@ -60,6 +62,8 @@ namespace TesteLS.CrudManaging
 
 		public CrudField(CrudDecoratorAttribute decorator, ModelBase model)
 		{
+			Model = model;
+
 			InitializeComponent();
 
 			EditControl = EditorFactory.CreateEditor(decorator, model);

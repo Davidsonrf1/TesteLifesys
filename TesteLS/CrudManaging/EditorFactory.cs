@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,14 @@ namespace TesteLS.CrudManaging
 		public static void Bind(ModelBase model, Control editor, DataContext ctx)
 		{
 
+		}
+
+		public class EnumMap
+		{
+			public string Name { get; set; }
+			public object Value { get; set; }
+
+			public override string ToString() => Name;
 		}
 
 		public static Control CreateEditor(CrudDecoratorAttribute decorator, ModelBase model)
@@ -31,24 +40,49 @@ namespace TesteLS.CrudManaging
 				p.DataBindings.Add("Value", model, decorator.Property.Name);
 			}
 
-			if (typeof(ModelBase).IsAssignableFrom(type))
+			string pn = decorator.Property.Name;
+
+			if (pn.ToLower().EndsWith("id"))
 			{
-				var cb = new ComboBox();
-				cb.FormattingEnabled = true;
+				var tp = Type.GetType($"{model.GetType().Namespace}.{pn.Substring(0, pn.Length-2)}", false, true);
 
-				var fd = (ModelBase)Activator.CreateInstance(type);
+				if (tp != null && !tp.Equals(model.GetType()))
+				{
+					var cb = new ComboBox();
+					cb.FormattingEnabled = true;
 
-				cb.DataSource = fd.GetController().GetList();
-				editor = cb;
+					var fd = (ModelBase)Activator.CreateInstance(tp);
 
-				//cb.DataBindings.Add("Value", model, decorator.Property.Name);
+					cb.DataSource = fd.GetController().GetList();
+					editor = cb;
+
+					PropertyInfo id = null;
+
+					foreach (var p in tp.GetProperties())
+					{
+						if (p.Name.Equals($"{tp.Name}id", StringComparison.CurrentCultureIgnoreCase))
+						{
+							id = p;
+							break;
+						}
+					}
+
+					if (id != null)
+						cb.ValueMember = id.Name;
+
+					cb.DataBindings.Add("SelectedValue", model, pn);
+				}
 			}
 
 			if (type.IsEnum)
 			{
-				var gb = new GroupBox();
+				var cb = new ComboBox();
 
 				var names = Enum.GetNames(type);
+				var values = Enum.GetValues(type);
+				List<EnumMap> map = new List<EnumMap>();
+
+				int index = 0;
 
 				foreach (var e in type.GetMembers())
 				{
@@ -64,13 +98,26 @@ namespace TesteLS.CrudManaging
 					}
 					else
 					{
-
+						name = e.Name;
 					}
+
+					map.Add(new EnumMap() { Name = name, Value = values.GetValue(index) });
+					index++;
 				}
+
+				cb.DataSource = map;
+				cb.ValueMember = "Value";
+
+				cb.DataBindings.Add("SelectedValue", model, decorator.Property.Name);
+
+				editor = cb;
 			}
 
 			if (editor == null)
+			{
 				editor = new TextBox();
+				editor.DataBindings.Add("Text", model, decorator.Property.Name);
+			}
 
 			return editor;
 		}
