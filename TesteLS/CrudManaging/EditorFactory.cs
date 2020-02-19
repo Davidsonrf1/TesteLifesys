@@ -35,6 +35,7 @@ namespace TesteLS.CrudManaging
 			{
 				var p = new DateTimePicker();
 				p.CustomFormat = "dd/MM/yyyy";
+				p.Format = DateTimePickerFormat.Short;
 				editor = p;
 
 				p.DataBindings.Add("Value", model, decorator.Property.Name);

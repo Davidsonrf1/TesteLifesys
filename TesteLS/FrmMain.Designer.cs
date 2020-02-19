@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.btnSair = new System.Windows.Forms.Button();
 			this.btnFornecedores = new System.Windows.Forms.Button();
@@ -135,8 +136,9 @@
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1096, 674);
 			this.Controls.Add(this.mainContainer);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FrmMain";
-			this.Text = "Form1";
+			this.Text = "Teste";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.mainContainer.Panel1.ResumeLayout(false);
 			this.mainContainer.Panel2.ResumeLayout(false);

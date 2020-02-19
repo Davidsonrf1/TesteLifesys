@@ -23,19 +23,19 @@ namespace TesteLS.Models
 		[CrudDecorator("Código", AllowEdit = false, Width = 80)]
 		public int FornecedorID { get; set; }
 
-		[CrudDecorator("Nome", Width = 400)]
+		[CrudDecorator("Nome", Width = 450)]
 		public string Nome { get; set; }
 
 		[CrudDecorator("Empresa", Width = 250)]
 		public int EmpresaID { get; set; }
 
-		[CrudDecorator("Cnpj/Cpf", Width = 120)]
+		[CrudDecorator("Cnpj/Cpf", Width = 190)]
 		public string CnpjCpf { get; set; }
 
-		[CrudDecorator("Data de Nascimento", Width = 100)]
+		[CrudDecorator("Data de Nascimento", Width = 200)]
 		public DateTime DataNascimento { get; set; } = DateTime.Now;
 
-		[CrudDecorator("Tipo", Width = 80, EnumMap = new string[] { "Física","Juridica" })]
+		[CrudDecorator("Tipo", Width = 150, EnumMap = new string[] { "Física","Juridica" })]
 		public TipoFornecedor Tipo { get; set; }
 
 		public override ControllerBase GetController()

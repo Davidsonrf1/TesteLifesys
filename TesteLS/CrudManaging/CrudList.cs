@@ -151,5 +151,15 @@ namespace TesteLS.CrudManaging
 				btnRemover.Enabled = false;
 			}
 		}
+
+		private void grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			btnEditar_Click(btnEditar, null);
+		}
+
+		private void btnRemover_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

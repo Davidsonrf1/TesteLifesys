@@ -14,7 +14,7 @@ namespace TesteLS.Models
 		[CrudDecorator("Código", AllowEdit = false, Width = 80)]
 		public int EmpresaID { get; set; }
 
-		[CrudDecorator("Nome Fantasia", Control = typeof(TextBox), Width = 350)]
+		[CrudDecorator("Nome Fantasia", Control = typeof(TextBox), Width = 450)]
 		public string NomeFantasia { get; set; }
 
 		[CrudDecorator("Número CNPJ", Control = typeof(TextBox), Width = 190)]

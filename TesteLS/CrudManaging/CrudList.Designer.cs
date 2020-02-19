@@ -123,6 +123,7 @@
 			this.grid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
 			this.grid.Size = new System.Drawing.Size(872, 365);
 			this.grid.TabIndex = 0;
+			this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellDoubleClick);
 			this.grid.SelectionChanged += new System.EventHandler(this.grid_SelectionChanged);
 			// 
 			// pnlControl
@@ -152,6 +153,7 @@
 			this.btnRemover.Text = "Remover";
 			this.btnRemover.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			this.btnRemover.UseVisualStyleBackColor = true;
+			this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
 			// 
 			// btnEditar
 			// 
